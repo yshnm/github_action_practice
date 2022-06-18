@@ -90,12 +90,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: val-output
     env: 
-      eeee: ${{ needs.val-output.outputs.configJson }}
+      eeee: ${{ fromJson(needs.val-output.outputs.configJson) }}
     steps:
       - run: |
           echo "${{ needs.val-output.outputs.random }}"
-          echo "${eeee.dev}"
-          echo "${eeee.arn}" 
+          echo "${eeee}"
+ 
 
 
 
