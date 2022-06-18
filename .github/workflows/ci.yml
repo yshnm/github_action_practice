@@ -24,6 +24,11 @@ jobs:
         run: |
           cd js 
           npm run lint
+      
+      - uses: docker://alpine:3.11
+        with:
+          entrypoint: /bin/echo
+          args: Hello, World!
 
   lint:
     name: Lint

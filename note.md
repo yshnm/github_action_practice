@@ -16,3 +16,77 @@
 * 異なるジョブ間では別のVMが使われるため、ジョブ間で情報をやり取りするためにはアーティファクトなどの方法が必要
 * githubが提供する環境のOSはLinux, windows, macOSの三種類
 * Linuxではパスワードなしでsudoコマンドを実行できる
+
+
+## ワークフロー構文
+
+### name
+* ワークフローの名前を表す。ブラウザ上でリポジトリのactionタブを開いた時に表示される
+
+### on 
+* ワークフローを実行するイベントを表す。
+* 指定必須
+* 例: push時に実行する場合
+  * on: push
+* 例: push, プルリクエスト時に実行する場合
+  * on: [push, pull_request]
+
+### jobs
+* ジョブの定義
+
+### jobs.<jon_id>
+* ジョブのIDを表す。値を自由だが重複してはいけない
+* アルファベットか_で始まる文字列で使える文字列は[アルファベット、数字、-、_ ]のみ
+
+### jobs.<jon_id>.name
+* ジョブの名前を定義する。ブラウザー上でactionタブを開いた時に表示される
+* 省略するとジョブIDが表示される。
+
+### jobs.<jon_id>.runs-on
+* ジョブが実行されるマシンを定義する。(必須)
+* マシンの種類
+  * ubuntu-latest
+    * ubuntuの最新バージョン
+  * ubuntu-18.04
+  * windows-latest
+    * windows server 2019
+  * macos-latest
+    * macos catalina 10.15
+
+### jobs.<job_id>.steps
+* ジョブを実行するステップの定義
+* それぞれのステップはそれぞれ異なるプロセスで実行される。そのためステップ内で環境変数を変更しても後のステップには変更が反映されない
+* 後のステップに環境変数の変更を反映さえる方法はset-envを使用する
+
+### jobs.<job_id>.steps.name
+* ステップの名前を定義
+
+### jobs.<job_id>.steps.uses
+* アクションの実行を定義する
+* 「アクション@バージョン」の形で定義する
+* バージョン指定
+    * uses: actions/checkout@v2.0.0
+* メジャーバージョン指定
+    * uses: actions/checkout@v2
+* コミットSHA指定
+    * uses: actions/checkout@722adc63f1aa60a57ec378
+* おすすめの方法はSHAで記述してコメントでバージョン情報を記述する
+# v2.0.0
+- uses: actions/checkout@722adc63f1aa60a57ec378
+
+* docker hub上のイメージをアクションとして実行
+  * uses: docker://alpine:3.11
+
+### jobs.<job_id>.steps.with
+* アクションのパラメータを定義する
+* 渡せるパラメータはアクション側にメタデータとして定義されている
+
+### jobs.<job_id>.steps.with．entrypoint
+* Dockerコンテナアクションを実行する場合 entrypointとargsという2つのパラメータを渡すことができる
+* entrypointはDockerfileのENTRYPOINTを上書きする
+
+### jobs.<job_id>.steps.with．args
+* コンテナアクション実行時ENTRYPOINTに渡される引数を文字列で定義する
+
+
+
