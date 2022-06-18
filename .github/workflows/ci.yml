@@ -1,6 +1,8 @@
 name: Continuous Integration
 
 on: push
+env: 
+  environment: dev
 
 jobs:
   unit-test:
@@ -71,15 +73,29 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       random: ${{ steps.generate-random.outputs.random }}
+      configJson: ${{ steps.generate-random.outputs.configJson }}
     steps:
-      - id: generate-random
-        run: echo "::set-output name=random::$(openssl rand -base64 12)"
+      - id: generate-random                    
+        run: |
+          echo "::set-output name=random::$(openssl rand -base64 12)"
+
+          for e in $(cat ./config.json)
+          do
+            if [ $environment == $e.env ]; then
+              echo "::set-output name=configJson::$e"
+            fi
+          done
   
   val-serve:
     runs-on: ubuntu-latest
     needs: val-output
+    env: 
+      eeee: ${{ needs.val-output.outputs.configJson }}
     steps:
-      - run: echo "${{ needs.val-output.outputs.random }}"
+      - run: |
+          echo "${{ needs.val-output.outputs.random }}"
+          echo "eeee.dev"
+          echo "eeee.arn" 
 
 
 
