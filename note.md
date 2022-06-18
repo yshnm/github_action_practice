@@ -169,3 +169,6 @@
     runs-on: ubuntu-latest
     needs: [unit-test, lint]
 ```
+
+###  jobs.<job_id>.outputs
+* ジョブ間のアウトプットの受け渡し
