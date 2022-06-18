@@ -21,7 +21,10 @@ jobs:
           npm ci
 
       - name: Test
-        run: npm test
+        run: |
+          cd js 
+          npm run lint
+
   lint:
     name: Lint
     runs-on: ubuntu-latest
@@ -40,4 +43,6 @@ jobs:
           npm ci
 
       - name: Lint
-        run: npm run lint
+        run: |
+          cd js 
+          npm run lint
