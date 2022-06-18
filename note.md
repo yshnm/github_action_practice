@@ -163,4 +163,9 @@
 
 ### jobs.<job_id>.needs
 * そのジョブの実行前に成功していないとけないジョブを定義できる
-
+```
+  practice: 
+    name: practice
+    runs-on: ubuntu-latest
+    needs: [unit-test, lint]
+```

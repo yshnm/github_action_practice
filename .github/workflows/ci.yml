@@ -41,6 +41,7 @@ jobs:
         run: |
           cd js 
           npm ci
+          exit 1
 
       - name: Lint
         run: |
