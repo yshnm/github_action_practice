@@ -81,6 +81,8 @@ jobs:
           
           echo "::set-output name=random::$(openssl rand -base64 12)"
 
+          ls
+
           for e in $(cat config.json | jq)
           do
             if [ $environment = $e.env ]; then
