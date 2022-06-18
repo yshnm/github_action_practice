@@ -81,7 +81,7 @@ jobs:
           
           echo "::set-output name=random::$(openssl rand -base64 12)"
 
-          ls
+          echo "$(ls -al)"
 
           for e in $(cat config.json | jq)
           do
