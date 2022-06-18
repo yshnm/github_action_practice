@@ -50,6 +50,7 @@ jobs:
   practice: 
     name: practice
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps: 
       # docker hubのイメージとアクションを実行
       - uses: docker://alpine:3.11
@@ -62,6 +63,11 @@ jobs:
           import sys
           print(sys.version)
         shell: python
+
+      # エラーが発生してジョブが失敗してもワークフローは失敗しない
+      - name: throws error 
+        run: exit 1
+      
 
       
 

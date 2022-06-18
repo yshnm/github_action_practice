@@ -115,3 +115,8 @@
       print(sys.version)
     shell: python
 
+### jobs.<job_id>.countinue-on-error
+* ジョブのcontinue-on-errorをtrueに指定することでそのジョブが失敗してもワークフローが失敗にならなくなる
+* 
+
+
