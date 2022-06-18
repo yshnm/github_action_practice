@@ -172,3 +172,41 @@
 
 ###  jobs.<job_id>.outputs
 * ジョブ間のアウトプットの受け渡し
+
+### スケジュールで定期実行
+```
+name: Security Audit
+on: 
+  schedule:
+    - cron: '0 0 * * *'
+```
+
+### jobs.<job_id>.if
+* ジョブに対してifを指定すると条件式に一致する時だけジョブが実行されるようになる
+* 以下はpushイベントがmasterブランチに発生した場合のみジョブ実行
+```
+on: push
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/master'
+    steps:
+      ・・・
+```
+
+### jobs.<job_id>.steps.if
+* ステップに対してifを指定すると条件式に一致する時だけステップが実行されるようになる
+
+### 使える関数
+* contains( searchStr , seachVal )
+    * 文字列が含まれているか
+* startsWith( searchStr , seachVal ) 
+    * 文字で始まるか
+* endsWith( searchStr , seachVal ) 
+    * 文字で終わるか
+* format (str, replacrVal0 , replacrVal1)
+* join ( element , optionalElm )
+* toJson ( val )
+    * valを綺麗にフォーマットしたjson文字列に変換
+* fromJson (val)
+    * valをjson文字列として表かしてJSONオブジェクトに変換する
