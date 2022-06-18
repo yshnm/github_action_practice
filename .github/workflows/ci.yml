@@ -94,8 +94,8 @@ jobs:
     steps:
       - run: |
           echo "${{ needs.val-output.outputs.random }}"
-          echo "eeee.dev"
-          echo "eeee.arn" 
+          echo "${eeee.dev}"
+          echo "${eeee.arn}" 
 
 
 
