@@ -81,7 +81,7 @@ jobs:
 
           for e in $(cat ./config.json)
           do
-            if [ $environment == $e.env ]; then
+            if [ $environment = $e.env ]; then
               echo "::set-output name=configJson::$e"
             fi
           done
