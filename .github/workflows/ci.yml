@@ -25,11 +25,6 @@ jobs:
           cd js 
           npm run lint
       
-      - uses: docker://alpine:3.11
-        with:
-          entrypoint: /bin/echo
-          args: Hello, World!
-
   lint:
     name: Lint
     runs-on: ubuntu-latest
@@ -51,3 +46,22 @@ jobs:
         run: |
           cd js 
           npm run lint
+  
+  practice: 
+    name: practice
+    runs-on: ubuntu-latest
+    steps: 
+      # docker hubのイメージとアクションを実行
+      - uses: docker://alpine:3.11
+        with:
+          entrypoint: /bin/echo
+          args: Hello, World!
+
+      # シェルをpythonに変更して実行
+      - run: |
+          import sys
+          print(sys.version)
+        shell: python
+
+      
+

@@ -88,5 +88,30 @@
 ### jobs.<job_id>.steps.with．args
 * コンテナアクション実行時ENTRYPOINTに渡される引数を文字列で定義する
 
+### jobs.<job_id>.steps．run
+* コマンドを実行
 
+### jobs.<job_id>.steps.working-directory
+* run実行時にworking-directoryを指定することでコマンド実行のワーキングディレクトリを変更できる
+* ワーキングディレクトリを /tmpに変更してコマンドを実行する例
+* - run: |
+      pwd
+      ls
+    working-directory: /tmp   
+
+### jobs.<job_id>.steps.shell
+* run実行時にシェルを指定することでコマンド実行時に使用されるshellを変更できる
+* 種類
+  * shell
+  * bash
+  * pwsh
+  * python
+  * sh
+  * cmd
+  + powershell
+* pythonスクリプトを実行
+* - run: |
+      import sys
+      print(sys.version)
+    shell: python
 
