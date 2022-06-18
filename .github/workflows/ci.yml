@@ -15,10 +15,10 @@ jobs:
         with:
           node-version: 14.x
 
-      - run: cd js
-
       - name: Install dependencies
-        run: npm ci
+        run: |
+          cd js 
+          npm ci
 
       - name: Test
         run: npm test
@@ -33,11 +33,11 @@ jobs:
         uses: actions/setup-node@v3.3.0
         with:
           node-version: 14.x
-      
-      - run: cd js
 
       - name: Install dependecies
-        run: npm ci
+        run: |
+          cd js 
+          npm ci
 
       - name: Lint
         run: npm run lint
