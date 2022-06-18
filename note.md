@@ -117,6 +117,50 @@
 
 ### jobs.<job_id>.countinue-on-error
 * ジョブのcontinue-on-errorをtrueに指定することでそのジョブが失敗してもワークフローが失敗にならなくなる
-* 
 
+### jobs.<job_id>.steps.id
+* ステップにIDを設定することで ${{ steps.<step_id>.outputs.<output_name> }}のようにコンテキスト経由でステップのアウトプットにアクセスできる
+
+### defaults
+* ワークフローのトップレベルでdefaultsを指定すると、ワークフロー内の全てのジョブにデフォルトで適用される設定を定義できる
+
+### defaults.run
+* ワークフロー内の全てのrunステップにデフォルトで適応される設定を定義できる
+* shellとworking-directoryを指定することができる
+
+### env
+* ワークフローのトップレベルでenvを指定するとワークフロー内すべてのジョブ、ステップに適応される環境変数を定義できる
+
+### jobs.<job_id>.env
+* 特定のjobだけで適用される環境変数を定義
+
+### デフォルトの環境変数
+* CI
+  * 常にtrue
+* HOME
+  * ホームディレクトリのパス
+* GITHUB_WORKFLOW
+  * ワークフロー名
+* GITHUB_RUN_ID
+  * ワークフローの実行ごとに設定されるリポジトリー全体でユニークなID (ワークフローを再実行しても変更されない)
+* GITHUB_RUN_NUMBER
+  * ワークフローの実行ごとに設定されるそれぞれのワークフローごとにユニークな1から始める番号 (ワークフローを再実行しても変更されない)
+* GITHUB_ACTION
+  * 現在実行中のアクションのユニークなID (同じアクションでも毎回異なる値になる)
+* GITHUB_ACTOR
+   * ワークフローを実行した人又はアプリの名前
+* GITHUB_REPOSITORY
+   * <owner>/<repository>の形式
+* GITHUB_EVENT_NAME
+    * ワークフローを実行したイベント名
+* GITHUB_EVENT_PATH
+    * ワークフローを実行したイベントのペイロードが保存されたファイルパス
+
+### 秘密情報の扱い
+* secretsに登録
+* github actions上で以下の方法でアクセス可能
+    * ${{ secrets.SECRET_TOKEN_NAME }}
+
+### jobs.<job_id>.needs
+* そのジョブの実行前に成功していないとけないジョブを定義できる
 

@@ -50,6 +50,8 @@ jobs:
   practice: 
     name: practice
     runs-on: ubuntu-latest
+    needs: [unit-test, lint]
+    # エラーが発生してジョブが失敗してもワークフローは失敗しない
     continue-on-error: true
     steps: 
       # docker hubのイメージとアクションを実行
@@ -64,10 +66,7 @@ jobs:
           print(sys.version)
         shell: python
 
-      # エラーが発生してジョブが失敗してもワークフローは失敗しない
-      - name: throws error 
-        run: exit 1
-      
+    
 
       
 
