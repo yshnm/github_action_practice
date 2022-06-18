@@ -50,7 +50,7 @@ jobs:
   practice: 
     name: practice
     runs-on: ubuntu-latest
-    continue-on-error: true
+    continue-on-error: false
     steps: 
       # docker hubのイメージとアクションを実行
       - uses: docker://alpine:3.11
