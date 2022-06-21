@@ -89,7 +89,7 @@ jobs:
       - name: Add Param
         uses: ./.github/actions/param
         with:
-          who-to-greet: ${{ needs.val-output.outputs.random }}
+          who-to-greet: ${{ needs.val-output.outputs.configJson }}
  
 
 
