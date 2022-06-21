@@ -31,6 +31,9 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2.0.0
+
       - name: Set Node.js 14.x
         uses: actions/setup-node@v3.3.0
         with:
@@ -96,6 +99,11 @@ jobs:
       - run: |
           echo "${{ needs.val-output.outputs.random }}"
           echo "${arn}"
+      
+      - name: Add Param
+        uses: ./.github/actions/param
+        with:
+          who-to-greet: yamayama
  
 
 
