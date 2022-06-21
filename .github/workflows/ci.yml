@@ -8,6 +8,8 @@ jobs:
   unit-test:
     name: Unit Test
     runs-on: ubuntu-latest
+    defaults:
+      steps: echo "step start"
     steps:
       - name: Checkout
         uses: actions/checkout@v2.0.0
