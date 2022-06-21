@@ -8,8 +8,6 @@ jobs:
   unit-test:
     name: Unit Test
     runs-on: ubuntu-latest
-    defaults:
-      run: echo "step start"
     steps:
       - name: Checkout
         uses: actions/checkout@v2.0.0
@@ -33,9 +31,6 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2.0.0
-
       - name: Set Node.js 14.x
         uses: actions/setup-node@v3.3.0
         with:
