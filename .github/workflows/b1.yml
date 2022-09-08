@@ -1,0 +1,16 @@
+name: b1
+on: 
+  push:
+    paths:
+      - '**/b1/*'
+  pull_request:
+    paths:
+      - '**/b1/*'
+
+jobs:
+  b1-test: 
+    name: Greeting # ジョブ名
+    runs-on: ubuntu-latest # ジョブが実行される仮想環境
+    steps:
+      - run: |
+          echo "b1"

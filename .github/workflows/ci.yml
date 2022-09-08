@@ -12,10 +12,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.0.0
 
-      - name: Set Node.js 14.x
+      - name: Set Node.js 16.x
         uses: actions/setup-node@v3.3.0
         with:
-          node-version: 14.x
+          node-version: 16.x
 
       - name: Install dependencies
         run: |
@@ -34,10 +34,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.0.0
 
-      - name: Set Node.js 14.x
+      - name: Set Node.js 16.x
         uses: actions/setup-node@v3.3.0
         with:
-          node-version: 14.x
+          node-version: 16.x
 
       - name: Install dependecies
         run: |
